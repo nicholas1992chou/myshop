@@ -1,2 +1,2 @@
 # myshop
-A sample and easy web application
+A simple and easy web application
