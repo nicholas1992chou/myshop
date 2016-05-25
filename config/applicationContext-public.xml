@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	
+	<!--导入资源文件 -->
+	<context:property-placeholder location="classpath:*.properties"/>
+	
+	<!-- 配置c3p0数据源  bean-->
+	<bean id ="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClassName}"></property>
+		<property name="jdbcUrl" value="${jdbc.url}"></property>
+		<property name="user" value="${jdbc.user}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+	
+	<!-- 配置sessionFactory bean-->
+	<bean id="localSessionFactoryBean" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
+		<property name="mappingLocations" value="classpath:com/zc/shop/entities/*.hbm.xml"></property>
+	</bean>
+	
+	<!-- 配置事务管理器 -->
+	<bean id = "hibernateTransactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="localSessionFactoryBean"></property>
+	</bean>
+	
+	<!-- 配置事务属性 -->
+	<tx:advice id="txAdvice" transaction-manager="hibernateTransactionManager">
+		<tx:attributes>
+			<tx:method name="*"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 将事务属性与切面关联 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* com.zc.shop.service.impl.*.*(..)) " id="pointcut"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
+	</aop:config>
+	
+	<bean id="fileUploadUtil" class="com.zc.shop.Utils.FileUploadUtil">
+	<!-- 
+	 -->
+	 <property name="filePath" value="${filePath}"></property>
+	</bean>
+	
+	<bean id="myTimerTask" class="com.zc.shop.Utils.MyTimerTask">
+		<property name="categoryService" ref="categoryService"></property>
+		<property name="productService" ref="productService"></property>
+	</bean>
+	
+	
+	
+</beans>

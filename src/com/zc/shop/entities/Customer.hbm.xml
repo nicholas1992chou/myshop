@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-3 18:39:44 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.zc.shop.entities.Customer" table="CUSTOMER">
+        <id name="id" type="java.lang.Integer" access="field">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String" access="field">
+            <column name="NAME" />
+        </property>
+        <property name="password" type="java.lang.String" access="field">
+            <column name="PASSWORD" />
+        </property>
+        <property name="sex" type="java.lang.String" access="field">
+            <column name="SEX" />
+        </property>
+        <property name="phone" type="java.lang.String" access="field">
+            <column name="PHONE" length="12"/>
+        </property>
+        <property name="email" type="java.lang.String" access="field">
+            <column name="EMAIL" length="50"/>
+        </property>
+        <set name="addressSet" table="ADDRESS">
+        	<key>
+        		<column name="customer_id"></column>
+        	</key>
+        	<one-to-many class="com.zc.shop.entities.Address"/>
+        </set>
+        <set name="forderSet" table="FORDER">
+        	<key>
+        		<column name="customer"></column>
+        	</key>
+        	<one-to-many class="com.zc.shop.entities.Forder"/>
+        </set>
+    </class>
+</hibernate-mapping>

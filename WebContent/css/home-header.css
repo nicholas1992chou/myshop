@@ -1,0 +1,487 @@
+@CHARSET "UTF-8";
+body, body * {
+	margin: 0;
+	padding: 0;
+	font-family:Tahoma,宋体;
+	
+}
+body{
+	background-image: url("/myshop/img/head.png");
+}
+#head {
+	margin: 0;
+	padding: 0;
+	background: url("/myshop/img/head.png");
+	height: 80px;
+	position: relative;
+}
+
+#head>ul {
+	position: relative;
+	left: 15%;
+	top: 15px;
+	width: 600px;
+	height: 50px;
+	background: -webkit-linear-gradient(bottom, rgb(213, 213, 213),
+		rgb(251, 251, 251)); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(bottom, rgb(213, 213, 213),
+		rgb(251, 251, 251)); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(bottom, rgb(213, 213, 213),
+		rgb(251, 251, 251)); /* Firefox 3.6 - 15 */
+	background: linear-gradient(to top, rgb(213, 213, 213),
+		rgb(251, 251, 251)); /* 标准的语法 */
+	border-radius: 8px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+#bigWrapper {
+	width: 1000px;
+	margin: 0 auto;
+	padding: 1px;
+	border: 2px solid #aaa;
+}
+#head>ul>li {
+	list-style: none;
+	width: 80px;
+	height: 30px;
+	border-radius: 15px;
+	margin-left: 20px;
+	float: left;
+	text-align: center;
+	float: left;
+}
+
+#head>ul>li>a {
+	width: 80px;
+	line-height: 30px;
+	border-radius: 15px;
+	font-size: 18px;
+	font-weight: bolder;
+	background: rgb(250, 250, 250);
+	display: block;
+	color: rgb(14, 15, 18);
+	text-decoration: none;
+	display: block;
+	font-size: 18px;
+}
+
+#head>ul>li:FIRST-CHILD {
+	margin-left: 0px;
+	margin-right: 100px;
+}
+
+#sc {
+	width: 300px;
+	height: 50px;
+	position: relative;
+	top: -35px;
+	left: 70%;
+}
+
+#sc .search {
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	margin-top: 5px;
+	font-size: 18px;
+	background: white;
+	cursor: pointer;
+	text-align: center;
+	line-height: 40px;
+	text-align: center;
+	border-radius:4px;
+}
+
+#sc .search:HOVER {
+	background-color: rgb(72,84,114);
+	border: none;
+	outline-color: black;
+	color: white;
+}
+
+#sc .login {
+	display: inline-block;
+	margin-left: 10px;
+	width: 60px;
+	height: 40px;
+	color: white;
+	font-family: 20px;
+	font-weight: bolder;
+	text-align: center;
+	line-height: 40px;
+	cursor: pointer;
+}
+
+#sc .login:HOVER, #sc .register:HOVER {
+	background: rgb(72,84,114);
+	border-radius:4px;
+}
+
+#sc .register {
+	display: inline-block;
+	width: 80px;
+	height: 40px;
+	color: white;
+	font-family: 20px;
+	font-weight: bolder;
+	cursor: pointer;
+	text-align: center;
+	line-height: 40px;
+}
+
+#searchbox {
+	display: none;
+	position: relative;
+	width: 80%;
+	margin: 0 auto;
+	height: 50px;
+	z-index: 98;
+	border:1px solid white;
+	left: 0px;
+	top: 0px;
+	position: relative;
+}
+
+#searchbox .text {
+	line-height: 40px;
+	font-size: 18px;
+	padding-left: 5px;
+	
+	filter: alpha(opacity = 50);
+	-moz-opacity: 0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+}
+
+#searchbox .submit {
+	position: relative;
+	left: 1044px;
+	top: -50px;
+	width: 50px;
+	height: 50px;
+	background: rgb(251, 251, 251);
+	font-size: 18px;
+	cursor: pointer;
+	outline: black;
+	border: none;
+}
+
+#cancel {
+	position: relative;
+	left: 1095px;
+	top: -100px;
+	width: 50px;
+	height: 50px;
+	background: rgb(251, 251, 251);
+	font-size: 18px;
+	text-align: center;
+	line-height: 50px;
+	outline: black;
+	cursor: pointer;
+}
+
+.inner {
+	position: absolute;
+	z-index: 99;
+	left: -100px;
+	top: 65px;
+	width: 900px;
+	background: rgb(154, 157, 184);
+	height: 550px;
+	border-bottom: 1px solid black;
+	margin-bottom: 5px;
+	
+	filter: alpha(opacity = 90);
+	-moz-opacity: 0.9;
+	-khtml-opacity: 0.9;
+	opacity: 0.9;
+}
+
+.inner ul:FIRST-CHILD {
+	margin-left: 220px;
+}
+
+.inner ul {
+	margin-top: 40px;
+	padding: 0;
+	width: 190px;
+	height: 450px;
+	float: left;
+}
+
+.inner ul li {
+	width: 120px;
+	list-style: none;
+	margin-bottom: 1px;
+}
+.inner a:HOVER{
+	border: 1px solid white;
+}
+.inner ul li:FIRST-CHILD a {
+	font-size: 16px;
+	font-weight: bold;
+	color: black;
+	margin-bottom: 15px;
+}
+
+.inner ul li:nth-child(2) a {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+.inner ul li:last-child a {
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+.inner a {
+	display: block;
+	line-height: 30px;
+	text-decoration: none;
+	color: gray;
+	font-weight: bold text-decoration: none;
+	transition: -ms-transform 2s;
+	/* Firefox 4 */
+	-moz-transition: -moz-transform 2s;
+	/* Safari and Chrome */
+	-webkit-transition: -webkit-transform 2s;
+	/* Opera */
+}
+
+.inner a:HOVER {
+	-moz-transform: rotateX(360deg);
+	-webkit-transform: rotateX(180deg);
+	-ms-transform: rotateX(180deg);
+}
+
+#bg {
+	height: 550px;
+	background: silver;
+	overflow: hidden;
+}
+
+#bg ul {
+	position: relative;
+	width: 12952px;
+	height: 550px;
+	left: 0px;
+}
+
+#bg img {
+	height: 550px;
+}
+
+#bg ul li {
+	list-style: none;
+	float: left;
+}
+
+#register {
+	position: absolute;
+	display: none;
+	z-index: 999;
+	left: 100px;
+	width: 650px;
+	height: 500px;
+	background: url("/myshop/img/bg2.jpg");
+	border: 2px solid white;
+}
+
+#register div {
+	height: 18px;
+}
+
+#register .tittle {
+	position: absolute;
+	color: #333;
+	font-size: 18px;
+	font-family:Tahoma;
+	top: 0px;
+	left: 10px;
+	line-height: 40px;
+	width: 60px;
+	height: 36px;
+}
+
+#register .head1 {
+	background: -webkit-linear-gradient(top, rgb(213, 213, 213),
+		rgb(255, 255, 255)); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(top, rgb(213, 213, 213), white);
+	/* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(top, rgb(213, 213, 213), white);
+	/* Firefox 3.6 - 15 */
+	background: linear-gradient(to bottom, rgb(213, 213, 213), white);
+	/* 标准的语法 */
+}
+
+#register .head2 {
+	background: -webkit-linear-gradient(bottom, rgb(213, 213, 213), white);
+	/* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(bottom, rgb(213, 213, 213), white);
+	/* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(bottom, rgb(213, 213, 213), white);
+	/* Firefox 3.6 - 15 */
+	background: linear-gradient(to top, rgb(213, 213, 213), white);
+	/* 标准的语法 */
+}
+
+#register .close {
+	position: absolute;
+	top: 2px;
+	left: 660px;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+}
+
+#register table {
+	width: 500px;
+	margin: 20px 100px;
+	font: 16px;
+}
+
+#register table tr {
+	height: 50px;
+	color: white;
+}
+
+#register table td:nth-child(1) {
+	width: 100px;
+}
+
+#register table td:nth-child(2) {
+	width: 145px;
+}
+
+#register table td:nth-child(3) {
+	padding-left: 10px;
+	font-size: 14px;
+	
+}
+#register input {
+	height: 20px;
+	border-radius: 3px;
+	color: #666;
+	padding: 3px;
+}
+
+#register .reset {
+	position: relative;
+	left: 570px;
+	top: -30px;
+	width: 48px;
+	height: 26px;
+	background: rgb(80, 83, 113);
+	cursor: pointer;
+	font-size: 14px;
+	line-height: 26px;
+	text-align: center;
+	border: 2px solid white;
+	border-radius: 5px;
+	color: white;
+}
+
+#register input[type=submit] {
+	position: relative;
+	left: 516px;
+	top: 0px;
+	width: 52px;
+	height: 30px;
+	background: rgb(80, 83, 113);
+	cursor: pointer;
+	border-radius: 5px;
+	color: white;
+}
+
+#login {
+	position: absolute;
+	z-index: 999;
+	background-image: url("/myshop/img/login.jpg");
+	width: 530px;
+	height: 390px;
+	border: 1px solid white;
+	display: none;
+	left:0;
+}
+#login table{
+	margin: 15% auto;
+	width: 250px;
+	color: #eee;
+}
+#login table tr{
+	height: 30px;
+}
+#login input{
+	width: 250px;
+	padding: 5px;
+	border-radius:5px;
+	background: rgb(54,54,54);
+	color: #eee;
+}
+#login .go{
+	width: 100px;
+	background: rgb(54,54,54);
+	padding: 5px;
+	border-radius:5px;
+	text-align: center;
+	margin-top: 20px;
+	margin-left: 150px;
+	border: 1px solid white;
+	cursor: pointer;
+}
+#login .go:HOVER{
+	background: white;
+	color: rgb(35, 35, 66);
+}
+#login label{
+	font-size: 18px;
+}
+#login .closeicon{
+position:absolute;
+left:489px;
+top:4px;
+	width: 35px;
+	height: 35px;
+	background: none;
+	cursor: pointer;
+}
+#login .interceptor{
+	position:absolute;
+	left:160px;
+	top:50px;
+	color: white;
+	display: none;
+}
+#login .error{
+	position:absolute;
+	left:410px;
+	top:120px;
+	color: white;
+	
+	display: none;
+}
+#lock{
+	//display: none;
+	position:absolute;
+	z-index:101;
+	left:0;
+	top:0;
+	background:gray;
+	 filter:alpha(opacity=80);  
+      -moz-opacity:0.8;  
+      -khtml-opacity: 0.8;  
+      opacity: 0.8;  
+}
+.ok{
+
+	width:40px;
+	height: 40px;
+	background: url("/myshop/icon/ok/ok.png");
+	background-repeat:no-repeat;
+	background-size:20px 20px;
+}

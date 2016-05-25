@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+   <!-- true为开发模式，修改Struts配置文件不需restart server -->
+    <constant name="struts.devMode" value="true" />
+    <!-- 临时文件上传路径
+	<constant name="struts.multipart.saveDir" value="WEB-INF/image"/>
+     -->
+   
+    <package name="default" namespace="/" extends="json-default">
+		
+    	<global-results>
+    		<result name="stream" type="stream">
+			<param name="inputName">inputStream</param>
+		</result>
+    	</global-results>
+	<action name="category_*" class="categoryAction" method="{1}">
+		
+		<result name="success" type="redirectAction">
+			send_account_admin.action
+		</result>
+		
+		<!-- extends json-default -->
+		<result name="jsonMap" type = "json">
+			<!-- 指定需要被转换成json格式的字段 -->
+			<param name="root">pageMap</param>
+			<!-- 过滤不需要的属性 -->
+			<param name="excludeProperties">
+				<!-- 正则表达式， -->
+				rows\[\d+]\.account\.password
+			</param>
+		</result>
+		<result name="jsonList" type = "json">
+			<!-- 指定需要被转换成json格式的字段 (action的属性)-->
+			<param name="root">jsonList</param>
+			<!-- 过滤不需要的属性 -->
+			<param name="excludeProperties">
+				<!-- 正则表达式， 按照List取值格式-->
+				\[\d+]\.account
+			</param>
+		</result>
+		
+	</action>
+<!-- :::::::::::::::::::account:::::::::::::::::::::: -->
+	<action name="account_*" class="accountAction" method="{1}">
+		<result name="jsonMap" type = "json">
+			<!-- 指定需要被转换成json格式的字段 -->
+			<param name="root">pageMap</param>
+		</result>
+		<result name="jsonList" type = "json">
+			<!-- 指定需要被转换成json格式的字段 (action的属性)-->
+			<param name="root">jsonList</param>
+			<!-- 过滤不需要的属性 -->
+			<param name="excludeProperties">
+				<!-- 正则表达式， 按照List取值格式-->
+				\[\d+]\.password
+			</param>
+		</result>
+		<result name="stream" type="stream">
+			<param name="inputName">inputStream</param>
+		</result>
+		<result name= "success" type="redirectAction">
+			send_account_admin.action
+		</result>
+		<result name= "input" type="redirect">
+			adminLogin.jsp
+		</result>
+	</action>
+	<action name="product_*" class="productAction" method="{1}">
+		
+		<!-- extends json-default -->
+		<result name="jsonMap" type = "json">
+			<!-- 指定需要被转换成json格式的字段 -->
+			<param name="root">pageMap</param>
+			<!-- 过滤不需要的属性 -->
+			<param name="excludeProperties">
+				<!-- 正则表达式， -->
+				rows\[\d+]\.category\.hot,
+				rows\[\d+]\.category\.account,
+				rows\[\d+]\.date
+				
+			</param>
+		</result>
+		<result name="jsonList" type = "json">
+			<!-- 指定需要被转换成json格式的字段 (action的属性)-->
+			<param name="root">jsonList</param>
+			<!-- 过滤不需要的属性 -->
+			<param name="excludeProperties">
+				<!-- 正则表达式， 按照List取值格式-->
+				\[\d+]\.category,
+				\[\d+]\.date
+				
+			</param>
+		</result>
+		<result name="stream" type="stream">
+			<param name="inputName">inputStream</param>
+		</result>
+		<result name="detail">/details.jsp</result>
+	</action>
+	
+	<action name="sorder_*" class="sorderAction" method="{1}">
+		<result name="login" type = "redirect">/userLogin.jsp</result>
+		
+		<result name="showCar" type="redirectAction">send_customer_showCar.action</result>
+		
+		<result name= "stream" type="stream">
+		
+		</result>
+	</action>
+    
+    <action name="customer_*" class="customerAction" method="{1}">
+    	<result name="login" type = "redirect">/userLogin.jsp</result>
+		<result name="home" type = "redirect">/index.jsp</result>
+		<result name="prePage" type = "redirect">${prePage}</result>
+    	<result name="stream" type="stream"></result>
+    </action>
+    
+    <action name="forder_*" class="forderAction" method="{1}">
+    	<result name="check out" type= "redirectAction">send_customer_check_out.action</result>
+    </action>
+    
+    
+    
+    <!-- :::::::::::::::内部转发用户请求到相应页面::::::::::::::::::: -->
+    <action name="send_*_*" class="sendAction">
+    	<result name="success">/WEB-INF/{1}/{2}.jsp</result>
+    </action>   
+     
+    </package>
+</struts>

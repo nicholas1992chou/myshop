@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-3 18:44:33 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.zc.shop.entities.Forder" table="FORDER">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="phone" type="java.lang.String">
+            <column name="PHONE" length="12"/>
+        </property>
+        <property name="totalAmount" type="big_decimal">
+            <column name="TOTALAMOUNT" sql-type="decimal(10,2)"/>
+        </property>
+        <property name="post" type="java.lang.String">
+            <column name="POST" length="6"/>
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="ADDRESS" />
+        </property>
+        <property name="message" type="java.lang.String">
+            <column name="MESSAGE" />
+        </property>
+        <property name="date" type="java.util.Date">
+            <column name="DATE" sql-type="timestamp" default="current_timestamp"/>
+        </property>
+        <many-to-one name="customer" class="com.zc.shop.entities.Customer" fetch="join">
+            <column name="CUSTOMER" />
+        </many-to-one>
+        <many-to-one name="status" class="com.zc.shop.entities.Status" fetch="join">
+            <column name="STATUS" />
+        </many-to-one>
+        <!-- 
+        	forder 与 sorder 为一对多关系，如果双方都有对方的实体则为双向关系。
+        	forder对象用集合存储sorder。sorder也用forder的实体引用。
+        	inverse为true表示 交给对方来维护外键，处理记录。
+        	cascade为all表示 存储forder实体时，会级联存储sorder集合里的实体。
+        	在存入的时候，集合里每个sorder实体的forder字段不能为null，即应该引用对应的forder实体。
+         -->
+        <set name="sorderSet" table="SORDER" inverse="true" cascade="all">
+            <key>
+                <column name="forder_id" />
+            </key>
+            <one-to-many class="com.zc.shop.entities.Sorder" />
+        </set>
+    </class>
+</hibernate-mapping>

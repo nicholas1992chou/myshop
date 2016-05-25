@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-3 18:39:44 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.zc.shop.entities.Product" table="PRODUCT">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="amount" type="java.lang.Long">
+            <column name="AMOUNT" />
+        </property>
+        <property name="price" type="big_decimal">
+            <column name="PRICE" sql-type="decimal(8,2)"/>
+        </property>
+        <property name="picture" type="java.lang.String">
+            <column name="PICTURE" />
+        </property>
+        <property name="remark" type="java.lang.String">
+            <column name="REMARK" />
+        </property>
+        <property name="dremark" type="java.lang.String">
+            <column name="DREMARK" sql-type="longtext"/>
+        </property>
+        <property name="date" type="java.util.Date">
+            <column name="DATE" sql-type="timestamp" default="current_timestamp"/>
+        </property>
+        <property name="commend" type="java.lang.Boolean">
+            <column name="COMMEND" />
+        </property>
+        <many-to-one name="category" class="com.zc.shop.entities.Category" >
+            <column name="CATEGORY" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

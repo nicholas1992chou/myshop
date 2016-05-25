@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	<!-- 泛型不能实例化 -->
+	<bean id="baseService" class="com.zc.shop.service.impl.BaseServiceImpl"
+		lazy-init="true" init-method="init">
+		<property name="productDao" ref="productDao"></property>
+		<property name="categoryDao" ref="categoryDao"></property>
+		<property name="accountDao" ref="accountDao"></property>
+		<property name="customerDao" ref="customerDao"></property>
+		<property name="forderDao" ref="forderDao"></property>
+		<property name="sorderDao" ref="sorderDao"></property>	
+	</bean>
+	<bean id="categoryService" class="com.zc.shop.service.impl.CategoryServiceImpl"
+		parent="baseService">
+
+	</bean>
+	<bean id="accountService" class="com.zc.shop.service.impl.AccountServiceImpl"
+		parent="baseService">
+	</bean>
+	<bean id="productService" class="com.zc.shop.service.impl.ProductServiceImpl"
+		parent="baseService"></bean>
+	<bean id="forderService" class="com.zc.shop.service.impl.ForderServiceImpl"
+		parent="baseService"></bean>
+	<bean id="sorderService" class="com.zc.shop.service.impl.SorderServiceImpl"
+		parent="baseService"></bean>
+	<bean id="customerService" class="com.zc.shop.service.impl.CustomerServiceImpl"
+		parent="baseService"></bean>
+</beans>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	<!-- 泛型不能实例化 -->
+	<bean id="baseDao" class="com.zc.shop.dao.impl.BaseDaoImpl" lazy-init="true">
+		<property name="sessionFactory" ref="localSessionFactoryBean"></property>
+	</bean>
+	<bean id="categoryDao" class="com.zc.shop.dao.impl.CategoryDaoImpl"	parent="baseDao"></bean>
+	<bean id="accountDao" class="com.zc.shop.dao.impl.AccountDaoImpl" parent="baseDao"></bean>
+	<bean id="productDao" class="com.zc.shop.dao.impl.ProductDaoImpl" parent="baseDao"></bean>
+	<bean id="forderDao" class="com.zc.shop.dao.impl.ForderDaoImpl" parent="baseDao"></bean>
+	<bean id="sorderDao" class="com.zc.shop.dao.impl.SorderDaoImpl" parent="baseDao"></bean>
+	<bean id="customerDao" class="com.zc.shop.dao.impl.CustomerDaoImpl" parent="baseDao"></bean>
+</beans>

@@ -1,0 +1,16 @@
+1.管理模块
+① admin.jsp主页面，easyUI布局：点击左边导航在中央产生选项卡，选项卡的正文content为一个iframe（一个页面）。
+	iframe的src发送请求到转发信息的action。将category/query.jsp返回到ifame。
+	query.jsp 利用easyUI在table元素里产生一个datagrid， uri发送请求到相应action，action
+	返回json 类型给datagrid。
+② 搜索功能
+	将一个普通文本转换为一个搜索框，利用datagrid的load功能重新加载数据到此datagrid。
+③ 批量删除功能
+	利用ajax技术发送请求到action，action返回stream类型给该页面。
+2.用户模块
+① 用户具有订单表，订单表里有历史购买商品信息。
+	用filter过滤请求，将请求转发到登录页面，因为所有jsp页面都有一个action转发，所以
+	URL-pattern 为该action。
+② 用户登录
+	登录后进入首页或 登录跳转到登录前页面, 。
+③ 用户注册
